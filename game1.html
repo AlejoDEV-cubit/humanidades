@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas Reflexivas | Juegos para Reflexionar</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        /* Estilos específicos del juego */
+        .card-game {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 500px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .card p {
+            font-size: 1.3rem;
+            margin: 0;
+            text-align: center;
+            color: #333;
+        }
+        
+        .deck {
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            border-radius: 10px;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+        
+        .deck:hover {
+            transform: translateY(-5px);
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .categories button {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .categories button.active {
+            background: #6e48aa;
+            color: white;
+        }
+        
+        .back-button {
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cartas Reflexivas</h1>
+        <p>Preguntas para conocerse mejor</p>
+    </header>
+    
+    <main>
+        <div class="card-game">
+            <div class="card" id="current-card">
+                <p id="card-text">Toca el mazo para sacar una carta</p>
+            </div>
+            
+            <div class="deck" id="deck">
+                <span>Mazo</span>
+            </div>
+            
+            <div class="categories">
+                <button data-category="familia" class="active">Familia</button>
+                <button data-category="cali">Cali</button>
+                <button data-category="emociones">Emociones</button>
+            </div>
+            
+            <button class="back-button" onclick="window.location.href='index.html'">Volver al menú</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Comparte tus respuestas con tus seres queridos ❤️</p>
+    </footer>
+    
+    <script src="game1.js"></script>
+</body>
+</html>

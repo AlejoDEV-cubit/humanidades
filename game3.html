@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia de Cali | Juegos para Reflexionar</title>
+    <link rel="stylesheet" href="css/game3.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        /* Estilos básicos (luego los ajustaremos con CSS aparte) */
+        .screen {
+            display: none;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .player-input {
+            margin: 15px 0;
+        }
+        
+        .player-input input {
+            padding: 10px;
+            border: 2px solid #6e48aa;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 300px;
+        }
+        
+        .btn {
+            background: #6e48aa;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .question-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .option-btn {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .option-btn:hover {
+            background: #ddd;
+        }
+        
+        .scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .player-score {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px 15px;
+            min-width: 120px;
+        }
+        
+        .winner {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            margin: 20px 0;
+        }
+        
+        .trophy {
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla 1: Bienvenida y selección de jugadores -->
+    <div class="screen" id="welcome-screen">
+        <h1>¡Trivia de Cali!</h1>
+        <p>¿Cuánto sabes realmente de tu ciudad? Demuéstralo.</p>
+        
+        <h2>Selecciona la cantidad de jugadores:</h2>
+        <button class="btn" data-players="2">2 Jugadores</button>
+        <button class="btn" data-players="3">3 Jugadores</button>
+        <button class="btn" data-players="4">4 Jugadores</button>
+        <button class="btn" data-players="5">5 Jugadores</button>
+    </div>
+    
+    <!-- Pantalla 2: Ingreso de nombres -->
+    <div class="screen" id="names-screen">
+        <h1>Ingresa los nombres</h1>
+        <div id="player-inputs">
+            <!-- Se generan dinámicamente -->
+        </div>
+        <button class="btn" id="start-game-btn">¡Comenzar!</button>
+    </div>
+    
+    <!-- Pantalla 3: Juego (preguntas y respuestas) -->
+    <div class="screen" id="game-screen">
+        <div class="scoreboard" id="scoreboard">
+            <!-- Marcador de puntos -->
+        </div>
+        
+        <div class="question-container">
+            <h2 id="current-player">Turno de: Jugador 1</h2>
+            <p id="question-text">¿Cuál es el río que atraviesa Cali?</p>
+            
+            <div class="options" id="options">
+                <!-- Opciones de respuesta -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pantalla 4: Ganador -->
+    <div class="screen" id="winner-screen">
+        <h1>¡Tenemos un ganador!</h1>
+        <div class="winner" id="winner-name">Jugador 1</div>
+        <div class="trophy">🏆</div>
+        <p id="winner-score">Puntuación: 10 puntos</p>
+        <button class="btn" id="play-again-btn">Jugar de nuevo</button>
+        <button class="btn" onclick="window.location.href='../../index.html'">Volver al menú</button>
+    </div>
+    
+    <footer>
+        <p>¿Quién sabe más de Cali? ¡Descúbrelo!</p>
+    </footer>
+    
+    <script src="game3.js"></script>
+</body>
+</html>

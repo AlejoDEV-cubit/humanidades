@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilemas de la Vida Real | Juegos para Reflexionar</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .dilema-container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dilema-text {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .opcion-btn {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+        
+        .opcion-btn:hover {
+            background: #6e48aa;
+            color: white;
+        }
+        
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .back-button {
+            margin-top: 20px;
+            background: #f0f0f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dilemas de la Vida Real</h1>
+        <p>Toma decisiones y reflexiona sobre sus consecuencias</p>
+    </header>
+    
+    <main>
+        <div class="dilema-container">
+            <div class="dilema-text" id="dilema-text">
+                Cargando dilema...
+            </div>
+            
+            <div class="opciones" id="opciones">
+                <!-- Las opciones se cargarán con JavaScript -->
+            </div>
+            
+            <div class="resultado" id="resultado">
+                <!-- El resultado se mostrará aquí -->
+            </div>
+            
+            <button class="back-button" onclick="window.location.href='../../index.html'">
+                Volver al menú
+            </button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>¿Qué harías tú en esta situación? Comparte tus respuestas con otros.</p>
+    </footer>
+    
+    <script src="game2.js"></script>
+</body>
+</html>
