@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia de Cali | Juegos para Reflexionar</title>
+    <link rel="stylesheet" href="css/game5.css">
+    <style>
+        /* Estilos básicos - completaremos después */
+        .screen {
+            display: none;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .player-input {
+            margin: 15px 0;
+        }
+        
+        .player-input input {
+            padding: 10px;
+            border: 2px solid #6e48aa;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 300px;
+        }
+        
+        .btn {
+            background: #6e48aa;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        
+        #culpables-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+        }
+        
+        .role-reveal {
+            font-size: 2rem;
+            margin: 30px 0;
+            min-height: 100px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .player-list {
+            margin: 20px 0;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .player-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .action-btn {
+            background: #e74c3c;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .save-btn {
+            background: #2ecc71;
+        }
+        
+        .narrative {
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .winner-screen {
+            font-size: 2rem;
+            color: #f39c12;
+            margin: 30px 0;
+        }
+        
+        .trophy {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla 1: Configuración inicial -->
+    <div class="screen" id="setup-screen">
+        <h1>Mafia de Cali</h1>
+        <p>Un juego de roles y estrategia</p>
+        
+        <h2>Jugadores:</h2>
+        <div id="player-inputs">
+            <div class="player-input">
+                <input type="text" id="player1" placeholder="Nombre del Jugador 1" required>
+            </div>
+        </div>
+        
+        <button class="btn" id="add-player-btn">Añadir Jugador</button>
+        
+        <h2>Cantidad de Culpables:</h2>
+        <input type="number" id="culpables-input" min="1" value="1">
+        
+        <button class="btn" id="start-game-btn">Comenzar Juego</button>
+    </div>
+    
+    <!-- Pantalla 2: Explicación de roles -->
+    <div class="screen" id="role-explanation-screen">
+        <h1>Preparación del Juego</h1>
+        <p>Pasa el celular a cada jugador para que descubra su rol en secreto</p>
+        <button class="btn" id="continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 3: Revelación de roles -->
+    <div class="screen" id="role-reveal-screen">
+        <h2 id="player-instruction">Pásale el celular a: <span id="current-player-name">Jugador</span></h2>
+        <p>Cuando estés listo, toca el botón para descubrir tu rol</p>
+        
+        <div class="role-reveal" id="role-display">
+            ????
+        </div>
+        
+        <button class="btn" id="reveal-role-btn">Descubrir mi rol</button>
+        <button class="btn" id="next-player-btn" style="display: none;">Siguiente Jugador</button>
+    </div>
+    
+    <!-- Pantalla 4: Narrador - Fase de ojos cerrados -->
+    <div class="screen" id="night-screen">
+        <h1>Fase Nocturna</h1>
+        <div class="narrative" id="night-instruction">
+            Todos cierren los ojos. Quien los abra sin permiso será eliminado.
+        </div>
+        <button class="btn" id="night-continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 5: Culpables seleccionan víctima -->
+    <div class="screen" id="culpables-screen">
+        <h1>Culpables</h1>
+        <div class="narrative">
+            Abran los ojos los <span style="color: #e74c3c;">CULPABLES</span>. Señalen en silencio a quien quieren eliminar.
+        </div>
+        
+        <div class="player-list" id="culpables-player-list">
+            <!-- Lista de jugadores para eliminar -->
+        </div>
+        
+        <button class="btn" id="culpables-continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 6: Detective adivina culpable -->
+    <div class="screen" id="detective-screen">
+        <h1>Detective</h1>
+        <div class="narrative">
+            <span style="color: #3498db;">DETECTIVE</span>, abre los ojos. Señala a quien crees que es culpable.
+        </div>
+        
+        <div class="player-list" id="detective-player-list">
+            <!-- Lista de jugadores para sospechar -->
+        </div>
+        
+        <button class="btn" id="detective-continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 7: Doctor salva víctima -->
+    <div class="screen" id="doctor-screen">
+        <h1>Doctor</h1>
+        <div class="narrative">
+            <span style="color: #2ecc71;">DOCTOR</span>, abre los ojos. ¿A quién quieres salvar?
+        </div>
+        
+        <div class="player-list" id="doctor-player-list">
+            <!-- Lista de jugadores para salvar -->
+        </div>
+        
+        <button class="btn" id="doctor-continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 8: Resultado de la noche -->
+    <div class="screen" id="result-screen">
+        <h1>Resultado de la Noche</h1>
+        <div class="narrative" id="night-result">
+            <!-- Historia narrativa aquí -->
+        </div>
+        <button class="btn" id="day-continue-btn">Continuar al Día</button>
+    </div>
+    
+    <!-- Pantalla 9: Discusión y votación diurna -->
+    <div class="screen" id="day-screen">
+        <h1>Fase Diurna</h1>
+        <div class="narrative">
+            Discutan y decidan a quién quieren eliminar. Gana la mayoría.
+        </div>
+        
+        <div class="player-list" id="day-player-list">
+            <!-- Lista de jugadores para votar -->
+        </div>
+        
+        <button class="btn" id="abstain-btn">Voto en Blanco</button>
+        <button class="btn" id="day-continue-btn">Continuar</button>
+    </div>
+    
+    <!-- Pantalla 10: Ganador -->
+    <div class="screen" id="winner-screen">
+        <div class="winner-screen" id="winner-text">
+            ¡GANARON LOS INOCENTES!
+        </div>
+        <div class="trophy">🏆</div>
+        <button class="btn" onclick="window.location.href='index.html'">Volver al Menú</button>
+    </div>
+    
+    <script src="game5.js"></script>
+</body>
+</html>

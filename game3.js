@@ -22,12 +22,7 @@ const playAgainBtn = document.getElementById('play-again-btn');
 
 // Base de preguntas sobre Cali
 const caliQuestions = [
-    {
-        question: "¿En qué año fue fundada Santiago de Cali?",
-        options: ["1536", "1550", "1608", "1492"],
-        correctAnswer: 0,
-        fact: "Cali fue fundada el 25 de julio de 1536 por Sebastián de Belalcázar."
-    },
+
     {
         question: "¿Cuál es el río principal que atraviesa Cali?",
         options: ["Río Magdalena", "Río Amazonas", "Río Cauca", "Río Bogotá"],
@@ -52,18 +47,26 @@ const caliQuestions = [
         correctAnswer: 2,
         fact: "El Cerro de Monserrate está en Bogotá, no en Cali."
     },
+ 
     {
-        question: "¿Qué plato típico caleño lleva chontaduro, plátano y borojó?",
-        options: ["Sancocho de gallina", "Cholado", "Aborrajados", "Lulada"],
-        correctAnswer: 1,
-        fact: "El cholado es una bebida helada típica de Jamundí, cerca de Cali."
-    },
-    {
-        question: "¿Cómo se llama el principal centro cultural de Cali?",
-        options: ["Teatro Jorge Isaacs", "La Tertulia", "Centro Cultural de Cali", "Biblioteca Departamental"],
-        correctAnswer: 1,
-        fact: "El Museo La Tertulia es el más importante de arte moderno en el suroccidente colombiano."
-    }
+            question: "¿Qué baile es típico de la cultura caleña?",
+            options: ["Salsa", "Cumbia", "Bachata", "Tango"],
+            correctAnswer: 0,
+            fact: "La salsa es el baile más representativo de Cali, conocida como la 'Capital Mundial de la Salsa'."
+        },
+        {
+            question: "¿Cuál es el nombre del famoso barrio de Cali conocido por su vida nocturna?",
+            options: ["San Antonio", "El Peñón", "Granada", "Versalles"],
+            correctAnswer: 1,
+            fact: "El Peñón es famoso por sus bares y restaurantes, especialmente en la zona de la Calle 5."
+        },
+        {
+            question: "¿Qué fruta tropical es originaria de Cali?",
+            options: ["Mango", "Piña", "Lulo", "Papaya"],
+            correctAnswer: 2,
+            fact: "El lulo es una fruta tropical muy popular en Cali y en toda Colombia."
+        },
+            
 ];
 
 // Inicialización del juego
